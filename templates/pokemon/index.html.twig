@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pokemon index{% endblock %}
+
+{% block body %}
+    <h1>Pokemon index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type_1</th>
+                <th>Type_2</th>
+                <th>Total</th>
+                <th>Hp</th>
+                <th>Attack</th>
+                <th>Defense</th>
+                <th>Sp_atk</th>
+                <th>Sp_def</th>
+                <th>Speed</th>
+                <th>Generation</th>
+                <th>Legendary</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pokemon in pokemon %}
+            <tr>
+                <td>{{ pokemon.id }}</td>
+                <td>{{ pokemon.name }}</td>
+                <td>{{ pokemon.type1 }}</td>
+                <td>{{ pokemon.type2 }}</td>
+                <td>{{ pokemon.total }}</td>
+                <td>{{ pokemon.hp }}</td>
+                <td>{{ pokemon.attack }}</td>
+                <td>{{ pokemon.defense }}</td>
+                <td>{{ pokemon.spAtk }}</td>
+                <td>{{ pokemon.spDef }}</td>
+                <td>{{ pokemon.speed }}</td>
+                <td>{{ pokemon.generation }}</td>
+                <td>{{ pokemon.legendary ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_pokemon_show', {'id': pokemon.id}) }}">show</a>
+                    <a href="{{ path('app_pokemon_edit', {'id': pokemon.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pokemon_new') }}">Create new</a>
+{% endblock %}
